@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spotify 猜歌遊戲</title>
+  <link rel="preconnect" href="https://open.spotify.com">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero-card">
+      <div class="bg-orb orb-one"></div>
+      <div class="bg-orb orb-two"></div>
+
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">SPOTIFY PLAYLIST GUESS SONG</p>
+          <h1>今晚誰是猜歌王？</h1>
+        </div>
+        <div class="round-badge"><span id="trackIndex">0</span>/<span id="trackTotal">10</span></div>
+      </header>
+
+      <section class="playlist-panel">
+        <label for="playlistUrl">Spotify 歌單網址</label>
+        <input id="playlistUrl" type="url" placeholder="貼上 Spotify Playlist 連結" />
+        <div class="playlist-actions">
+          <button id="loginBtn" class="primary-btn">連接 Spotify</button>
+          <button id="loadPlaylistBtn" class="accent-btn">抓歌單並開始</button>
+        </div>
+        <p id="statusText" class="status-text">請先在 config.js 填入 Client ID 與歌單網址。</p>
+      </section>
+
+      <div class="vinyl-wrap">
+        <div class="vinyl-disc"><span></span></div>
+        <div class="pulse-ring"></div>
+      </div>
+
+      <section class="player-panel">
+        <p class="hint">先聽音樂，再揭曉答案</p>
+        <div id="spotifyMount" class="spotify-mount"></div>
+        <div id="coverMask" class="cover-mask">
+          <button id="playBtn" class="primary-btn">▶ 播放這一題</button>
+          <p>歌曲資訊已遮住，避免偷看答案</p>
+        </div>
+      </section>
+
+      <section class="answer-card">
+        <p class="label">ANSWER</p>
+        <h2 id="songTitle">尚未開始</h2>
+        <p id="artistName">連接 Spotify 後，系統會從歌單隨機抽 10 首</p>
+      </section>
+
+      <div class="actions">
+        <button id="prevBtn" class="ghost-btn">上一首</button>
+        <button id="revealBtn" class="accent-btn">揭曉答案</button>
+        <button id="nextBtn" class="ghost-btn">下一首</button>
+      </div>
+
+      <footer>
+        <button id="resetBtn" class="text-btn">再來一輪</button>
+        <p>每次再來一輪，都會重新從 Spotify 歌單隨機抽 10 首</p>
+      </footer>
+    </section>
+  </main>
+
+  <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
